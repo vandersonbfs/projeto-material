@@ -1,11 +1,28 @@
+
 import { Component } from '@angular/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { DatepickerComponent } from "../datepicker/datepicker.component"; // Importações necessárias para animação
 
 @Component({
   selector: 'app-form',
-  imports: [],
+  standalone: true,
   templateUrl: './form.component.html',
-  styleUrl: './form.component.css'
+  styleUrls: ['./form.component.css'],
+  imports: [MatInputModule, MatButtonModule, MatCardModule, DatepickerComponent],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }), // Começar invisível
+        animate('500ms', style({ opacity: 1 })) // Animar até opacidade 1
+      ]),
+      transition(':leave', [
+        animate('500ms', style({ opacity: 0 })) // Desaparecer com animação
+      ])
+    ])
+  ]
 })
-export class FormComponent {
+export class FormComponent {}
 
-}
